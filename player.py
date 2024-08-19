@@ -28,6 +28,17 @@ class Player(CircleShape):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
 
+    def collision_checker(self, circle):
+        collide = False
+        pos = circle.position
+
+        distance = pygame.Vector2.distance_to(self.position, pos)
+
+        if distance < (self.radius + circle.radius):
+            collide = True
+
+        return collide
+
     def update(self, dt):
         keys = pygame.key.get_pressed()
 

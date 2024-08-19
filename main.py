@@ -41,6 +41,11 @@ def main():
 
         for u in updateable:
             u.update(dt)
+
+        for a in asteroids:
+            if player.collision_checker(a):
+                print("Game over!")
+                return
         
         pygame.display.flip() # For refreshing screen
 
