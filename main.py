@@ -18,13 +18,24 @@ def main():
 
     player = Player(x, y)
 
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    updateable.add(player)
+    drawable.add(player)
+
     while True:
         # pause game until 1/60th of a second passed
         dt = timer.tick(60) / 1000
-        
+
         screen.fill(pygame.Color(0,0,0))
-        player.draw(screen)
-        player.update(dt)
+
+        for d in drawable:
+            d.draw(screen)
+
+        for u in updateable:
+            u.update(dt)
+        
         pygame.display.flip() # For refreshing screen
 
         # For checking if user closed window and exit game loop if they do (make close button work)
