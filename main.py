@@ -19,8 +19,12 @@ def main():
     player = Player(x, y)
 
     while True:
+        # pause game until 1/60th of a second passed
+        dt = timer.tick(60) / 1000
+        
         screen.fill(pygame.Color(0,0,0))
         player.draw(screen)
+        player.update(dt)
         pygame.display.flip() # For refreshing screen
 
         # For checking if user closed window and exit game loop if they do (make close button work)
@@ -28,8 +32,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        # pause game until 1/60th of a second passed
-        dt = timer.tick(60) / 1000
+        
 
         
 
