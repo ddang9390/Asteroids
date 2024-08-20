@@ -9,3 +9,14 @@ class Shot(CircleShape):
 
     def update(self, dt):
         self.position += self.velocity * dt
+
+    def collision_checker(self, circle):
+        collide = False
+        pos = circle.position
+
+        distance = pygame.Vector2.distance_to(self.position, pos)
+
+        if distance < (self.radius + circle.radius):
+            collide = True
+
+        return collide
