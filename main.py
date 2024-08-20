@@ -13,6 +13,10 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    pygame.font.init()
+    score_text = pygame.font.SysFont("your_font.ttf", 24)
+    score = 0
+
     timer = pygame.time.Clock()
     dt = 0 # Delta time, for representing amount of time since last frame was drawn (for fps)
 
@@ -37,7 +41,10 @@ def main():
         # pause game until 1/60th of a second passed
         dt = timer.tick(60) / 1000
 
+        
         screen.fill("black")
+        score_surface = score_text.render(str(score), True, "white")
+        screen.blit(score_surface, (x , 50))
 
         for d in drawable:
             d.draw(screen)
@@ -50,13 +57,12 @@ def main():
                 if b.collision_checker(a):
                     a.split()
                     b.kill()
+                    score += 100
 
             if player.collision_checker(a):
                 print("Game over!")
                 return
             
-        # for b in bullets:
-        #     b.draw(screen)
         
         pygame.display.flip() # For refreshing screen
 

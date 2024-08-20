@@ -10,6 +10,7 @@ class Player(CircleShape):
 
         self.rotation = 0
         self.timer = 0
+        self.score = 0
 
     # in the player class
     def triangle(self):
