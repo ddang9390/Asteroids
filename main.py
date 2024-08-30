@@ -16,6 +16,7 @@ def main():
     pygame.font.init()
     score_text = pygame.font.SysFont("your_font.ttf", 24)
     score = 0
+    raise_difficulty = 500
 
     timer = pygame.time.Clock()
     dt = 0 # Delta time, for representing amount of time since last frame was drawn (for fps)
@@ -59,11 +60,17 @@ def main():
                     b.kill()
                     score += 100
 
+                    if score >= raise_difficulty:
+                        asteroidField.spawn_rate -= 0.1
+                        raise_difficulty += 500
+
             if player.collision_checker(a):
                 print("Game over!")
                 return
             
         
+        
+            
         pygame.display.flip() # For refreshing screen
 
         # For checking if user closed window and exit game loop if they do (make close button work)
